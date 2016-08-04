@@ -1,0 +1,3 @@
+   while (b_flag == 0 && awal<=akhir)
+   {
+            tengah = (awal + akhir)/2; 
