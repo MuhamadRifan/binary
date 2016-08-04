@@ -1,0 +1,106 @@
+#include <iostream> 
+//ini adalah yang si sebut liblary. dalam c++ kita juga dapat
+//membuat liblary sendiri sesuai dengan yang di perlukan
+ 
+using namespace std; 
+//tidak semua kompiler menggunakan ini, taoi jika anda menggunakan
+//devc++ maka anda harus menggunakanya agar dapat terkompile.
+ 
+#include <conio.h>//perintah untuk membersihkan layar
+ 
+#include <iomanip>//diperlukan bila melibatkan setw() yang bermanfaat 
+//untuk mengatur lebar dari suatu tampilan
+ 
+void selection_sort( int data[])//Definisi fungsi
+{
+      int temp; //temp sebagai tempat penyimpanan sementara saat menukar nilai
+ 
+      for(int i=0; i<10;i++){
+   // perulangan untuk mengganti elemen array yang akan dibandingkan
+             
+   for(int j = i+1; j<10; j++)
+   //perulangan untuk membandingkan array data[i} 
+   //dengan elemen array selanjutnya
+            {
+                  if(data[i]>data[j])
+      //penukaran nialai data [i] dengan salah satu elemen array 
+      //selanjutnya jika ditemukan data [i] lebih besar dari 
+      //elemen array yang jadi hasil sorting ini mencari 
+      //nilai terkecil kemudian menempatkannya di kiri
+                  {
+              temp = data[i]; //proses penukarannya
+              data[i]  = data[j];
+              data[j] = temp; 
+                  }
+            }
+      }
+}
+int main()//main program mengembalikan nilai int secara default
+{
+      int data[10];
+   // Deklarasi data bertipe integer dengan maksimal nilai indeks 10
+       
+   int cari;// Deklarasi cari bertipe integer
+ 
+      cout<<"\t   'BINARY SEARCH'"<<endl;// Output pada layar judul program
+      cout<<"\t====================="<<endl;// Output pada layar judul program
+       
+   cout<<"\nMasukkan 10 Data : ";
+   // Output pada layar untuk perintah memasukkan data awal
+       
+   for(int x = 0; x<10; x++)//Baca elemen array
+            cin>>data[x]; //  Menginputkan data[x] oleh user
+     
+      cout<<"\nMasukkan data yang ingin Anda cari : "; 
+   // Output pada layar untuk perintah memasukkan data yang akan dicari
+       
+   cin>>cari; //  Menginputkan data yang akan dicari oleh user
+      cout<<"\nData diurutkan : "; // Output pada layar
+      selection_sort(data); //pemanggilan fungsi selection_sort() 
+   
+      for(int x = 0; x<10;x++) //Baca elemen array
+            cout<<setw(3)<<data[x]; 
+   // Output pada layar untuk menampilkan data setelah diurutkan
+      
+      cout<<endl; // Menempatkan kursor pada line berikutnya
+ 
+      //searching
+      int awal, akhir, tengah, b_flag = 0; 
+   // Deklarasi awal,akhir,tengah bertipe integer dan
+   // set b_flag off
+       
+   awal = 0; //Mula-mula diambil posisi awal 0  
+      akhir = 10; // posisi akhir = 10
+       
+   while (b_flag == 0 && awal<=akhir)//kondisi
+      {
+            tengah = (awal + akhir)/2; 
+   //kemudian dicari posisi data tengah dengan 
+   //rumus (posisi awal + posisi akhir) / 2
+             
+   if(data[tengah] == cari) 
+   //Kemudian data yang dicari dibandingkan dengan data tengah. 
+            {
+                  b_flag = 1; // turn b_flag on
+                  break; //proses perulangan berhenti
+            }
+            else if(data[tengah]<cari) //Jika lebih kecil
+      awal = tengah + 1;
+      //proses dilakukan kembali tetapi posisi akhir dianggap 
+      //sama dengan posisi tengah +1.
+            else
+                  akhir = tengah -1;
+                  //Jika lebih besar, proses dilakukan kembali tetapi 
+      //posisi awal dianggap sama dengan posisi tengah -1. 
+      }
+      if(b_flag == 1) //Jika data sama, berarti ketemu
+            cout<<"\nData ditemukan pada index ke-"<<tengah<<endl;
+            // Output pada layar untuk menampilkan indeks data
+       
+   else //Jika data tidak sama, berarti tidak ketemu
+            cout<<"\nData tidak ditemukan\n";
+            // Output pada layar untuk menampilkan bahwa data tidak ditemukan
+ 
+      _getche();//untuk menerima sembarang input keyboard dari user
+      return 0; //memberitahu kepada sistem operasi bahwa program telah berakhir
+  }
