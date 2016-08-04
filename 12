@@ -1,0 +1,2 @@
+   cout<<"\nMasukkan 10 Data : ";
+      for(int x = 0; x<10; x++)
